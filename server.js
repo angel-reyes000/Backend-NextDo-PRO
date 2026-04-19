@@ -8,6 +8,8 @@ const app = express()
 app.use(cors({
     origin: '*'
 }))
+app.options('*', cors())
+
 app.use(express.json())
 app.use((req, res, next) => {
     res.setHeader('Cross-Origin-Opener-Policy', 'unsafe-none');
