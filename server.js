@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors')
 const {pool, crearConexion} = require('./config_database/dataBase')
 const { createNote, readNote, updateNote, deleteNote, readUser, createUser, postLogIn, getLogin, auth, postGoogle } = require('./config_controllers/controllers')
+require('dotenv').config();
 
 const app = express()
 app.use(express.json())
@@ -30,7 +31,7 @@ const startServer = async () => {
     try {
         await crearConexion()
         console.log("Base de datos conectada✅")
-        app.listen(4000, async () => {
+        app.listen(process.env.PORT || 4000, async () => {
             console.log("Server run correctly")
         })
     } catch (error) {
