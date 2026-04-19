@@ -9,6 +9,11 @@ app.use(cors({
     origin: '*'
 }))
 app.use(express.json())
+app.use((req, res, next) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'unsafe-none');
+    res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none');
+    next();
+})
 
 app.get('/', (req, res) => {
     res.json({
