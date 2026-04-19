@@ -260,7 +260,7 @@ const postGoogle = async (req, res) => {
             `;
 
             const createPassword = crypto.randomBytes(32).toString('hex');
-            const hashedPassword = bcrypt.hash(createPassword, 10);
+            const hashedPassword = await bcrypt.hash(createPassword, 10);
 
             const resultado = await pool.query(consulta, [
                 payload.given_name || payload.name,
