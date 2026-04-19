@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
 const { OAuth2Client } = require('google-auth-library')
 const crypto = require('crypto');
+require('dotenv').config();
 
 const readNote = async (req, res) => {
     try {
@@ -197,7 +198,7 @@ const postLogIn = async (req, res) => {
     const token = jsonwebtoken.sign(
         { id: user.id },
         process.env.SECRET,
-        { expiresIn: "1m"}
+        { expiresIn: "7d"}
     );
 
     res.status(200).json({
@@ -227,7 +228,7 @@ const auth = async (req, res, next) => {
     }
 }
 
-const client = new OAuth2Client(process.env.NEXT_PUBLIC_GOOGLE_CLIENT)
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT)
 
 const postGoogle = async (req, res) => {
     try {
@@ -239,7 +240,7 @@ const postGoogle = async (req, res) => {
 
         const ticket = await client.verifyIdToken({
             idToken: googleToken,
-            audience: process.env.NEXT_PUBLIC_GOOGLE_CLIENT
+            audience: process.env.GOOGLE_CLIENT
         });
 
         const payload = ticket.getPayload();
@@ -274,7 +275,7 @@ const postGoogle = async (req, res) => {
         const jwtToken = jsonwebtoken.sign(
             { id: userId },
             process.env.SECRET,
-            { expiresIn: "1h" }
+            { expiresIn: "7d" }
         );
 
         res.status(200).json({ token: jwtToken });
