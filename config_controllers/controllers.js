@@ -26,18 +26,18 @@ const createNote = async (req, res) => {
 
         today_date = new Date().toLocaleDateString()
 
-            // if (!title) {
-            //     title = "NA"
-            // } 
-            // if (!description) {
-            //     description = "NA"
-            // } 
-            // if (!deadline) {
-            //     deadline = today_date.split('T')[0]
-            // } 
-            // if (!priority) {
-            //     priority = "Low"
-            // } 
+            if (!title) {
+                title = "NA"
+            } 
+            if (!description) {
+                description = "NA"
+            } 
+            if (!deadline) {
+                deadline = today_date.toISOString().split('T')[0]
+            } 
+            if (!priority) {
+                priority = "Low"
+            } 
 
 
         const consulta = "INSERT INTO note (user_id, title, description, deadline, priority) VALUES ($1, $2, $3, $4, $5)";
