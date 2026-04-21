@@ -27,10 +27,10 @@ const createNote = async (req, res) => {
         today_date = new Date().toLocaleDateString()
 
             if (!title) {
-                title = "NA"
+                title = "Sin titulo"
             } 
             if (!description) {
-                description = "NA"
+                description = "Sin descripcion"
             } 
             if (!deadline) {
                 deadline = today_date.split('T')[0]
