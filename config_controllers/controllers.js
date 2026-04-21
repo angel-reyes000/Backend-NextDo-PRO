@@ -33,7 +33,7 @@ const createNote = async (req, res) => {
                 description = "Sin descripcion"
             } 
             if (!deadline) {
-                deadline = today_date.split('T')[0]
+                deadline = new Date().toISOString().split('T')[0]
             } 
             if (!priority) {
                 priority = "Low"
