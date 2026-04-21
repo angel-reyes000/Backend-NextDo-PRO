@@ -40,7 +40,7 @@ const createNote = async (req, res) => {
             } 
 
 
-        const consulta = "INSERT INTO note (user_id, title, description, deadline, priority) VALUES ($1, $2, $3, $4, $5)";
+        const consulta = "INSERT INTO note (user_id, title, description, deadline, priority) VALUES ($1, $2, $3, $4, $5) RETURNING *";
 
         const valores = [req.user.id, title, description, deadline, priority];
 
